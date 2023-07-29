@@ -1,20 +1,25 @@
-import com.example.Cat;
-import com.example.Feline;
 import com.example.IKitten;
 import com.example.Lion;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(Parameterized.class)
 public class LionTest {
+
+    @Before
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Mock
     private Lion lion;
@@ -22,21 +27,31 @@ public class LionTest {
     @Mock
     private IKitten kitten;
 
-    @Test
-    public void testLionFeMale() throws Exception {
-        lion = new Lion("Самка");
+    private final String name;
+    private final Boolean result;
 
-        Assert.assertFalse(lion.doesHaveMane());
+    public LionTest(String name, Boolean result) {
+        this.name = name;
+        this.result = result;
+    }
+
+    @Parameterized.Parameters
+    public static Object[][] getData() {
+        return new Object[][]{
+                {"Самка", false},
+                {"Самец", true},
+        };
     }
 
     @Test
-    public void testLionMale() throws Exception {
-        lion = new Lion("Самец");
-        Assert.assertTrue(lion.doesHaveMane());
+    public void testLionName() throws Exception {
+        lion = new Lion(name);
+        Assert.assertEquals(result, lion.doesHaveMane());
     }
 
+
     @Test
-    public void testLionMale1() {
+    public void testLionOther() {
         try {
             lion = new Lion("Другое");
         } catch (AssertionError | Exception e) {
@@ -54,7 +69,7 @@ public class LionTest {
     }
 
     @Test
-    public void testGetFood2(){
+    public void testGetKittens() {
         lion = new Lion(kitten);
         Mockito.when(lion.getKittens()).thenReturn(1);
 

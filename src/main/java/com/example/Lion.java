@@ -2,8 +2,12 @@ package com.example;
 
 import java.util.List;
 
-public class Lion {
+public class Lion implements IKitten{
+    private IKitten kitten;
 
+    public Lion(IKitten kitten) {
+        this.kitten = kitten;
+    }
     boolean hasMane;
 
     public Lion(String sex) throws Exception {
@@ -12,21 +16,27 @@ public class Lion {
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
     }
 
-    Feline feline = new Feline();
+
 
     public int getKittens() {
-        return feline.getKittens();
+        return kitten.getKittens();
     }
+
+    @Override
+    public List<String> getFood(String type) throws Exception {
+        return kitten.getFood("Хищник");
+    }
+
 
     public boolean doesHaveMane() {
         return hasMane;
     }
 
-    public List<String> getFood() throws Exception {
-        return feline.getFood("Хищник");
-    }
+
+
+
 }
