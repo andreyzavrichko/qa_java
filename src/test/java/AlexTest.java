@@ -12,26 +12,23 @@ import java.util.List;
 public class AlexTest {
 
     @Mock
-    Alex alex;
-
-    @Mock
     private IKitten kitten;
 
     @Test
     public void testGetFriends() {
-        alex = new Alex(kitten);
+        Alex alex = new Alex(kitten);
         Assert.assertEquals(List.of("Марти", "Глория", "Мелман"), alex.getFriends());
     }
 
     @Test
     public void testGetPlaceOfLiving() {
-        alex = new Alex(kitten);
+        Alex alex = new Alex(kitten);
         Assert.assertEquals("Нью-Йоркский зоопарк", alex.getPlaceOfLiving());
     }
 
     @Test
     public void testGetKittens() {
-        alex = new Alex(kitten);
+        Alex alex = new Alex(kitten);
         Assert.assertEquals(0, alex.getKittens());
     }
 

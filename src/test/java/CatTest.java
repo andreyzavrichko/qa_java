@@ -7,31 +7,26 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
-
-    @Mock
-    Cat cat;
 
     @Mock
     Feline feline;
 
     @Test
     public void testGetSound() {
-        cat = new Cat(feline);
+        Cat cat = new Cat(feline);
         Assert.assertEquals("Мяу", cat.getSound());
     }
 
     @Test
     public void testGetFood() throws Exception {
-        cat = new Cat(feline);
-        Mockito.when(cat.getFood()).thenReturn(Collections.singletonList("Хищник"));
-        ArrayList<String> data = new ArrayList<>();
-        data.add("Хищник");
-        Assert.assertEquals(data, cat.getFood());
+        Cat cat = new Cat(feline);
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.eatMeat()).thenReturn(expectedFood);
+        Assert.assertEquals(expectedFood, cat.getFood());
     }
 
 }

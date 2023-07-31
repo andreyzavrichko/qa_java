@@ -2,12 +2,14 @@ package com.example;
 
 import java.util.List;
 
-public class Lion implements IKitten{
+public class Lion {
     private IKitten kitten;
+    Predator predator;
 
     public Lion(IKitten kitten) {
         this.kitten = kitten;
     }
+
     boolean hasMane;
 
     public Lion(String sex) throws Exception {
@@ -21,14 +23,8 @@ public class Lion implements IKitten{
     }
 
 
-
     public int getKittens() {
         return kitten.getKittens();
-    }
-
-    @Override
-    public List<String> getFood(String type) throws Exception {
-        return kitten.getFood("Хищник");
     }
 
 
@@ -37,6 +33,7 @@ public class Lion implements IKitten{
     }
 
 
-
-
+    public List<String> getFood() throws Exception {
+        return kitten.getFood();
+    }
 }
