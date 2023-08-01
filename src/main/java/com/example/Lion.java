@@ -3,12 +3,12 @@ package com.example;
 import java.util.List;
 
 public class Lion {
-    private IKitten kitten;
-    Predator predator;
+    private Info info;
 
-    public Lion(IKitten kitten) {
-        this.kitten = kitten;
+    public Lion(Feline feline) {
+        this.info = feline;
     }
+
 
     boolean hasMane;
 
@@ -24,7 +24,7 @@ public class Lion {
 
 
     public int getKittens() {
-        return kitten.getKittens();
+        return info.getKittens();
     }
 
 
@@ -32,8 +32,9 @@ public class Lion {
         return hasMane;
     }
 
-
     public List<String> getFood() throws Exception {
-        return kitten.getFood();
+        return info.getFood();
     }
+
+
 }

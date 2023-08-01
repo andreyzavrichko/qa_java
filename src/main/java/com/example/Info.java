@@ -2,7 +2,7 @@ package com.example;
 
 import java.util.List;
 
-public interface IKitten {
+public interface Info {
     int getKittens();
 
     List<String> getFood() throws Exception;
