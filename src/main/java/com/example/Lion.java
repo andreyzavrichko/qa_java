@@ -3,6 +3,12 @@ package com.example;
 import java.util.List;
 
 public class Lion {
+    private Info info;
+
+    public Lion(Feline feline) {
+        this.info = feline;
+    }
+
 
     boolean hasMane;
 
@@ -12,21 +18,23 @@ public class Lion {
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
     }
 
-    Feline feline = new Feline();
 
     public int getKittens() {
-        return feline.getKittens();
+        return info.getKittens();
     }
+
 
     public boolean doesHaveMane() {
         return hasMane;
     }
 
     public List<String> getFood() throws Exception {
-        return feline.getFood("Хищник");
+        return info.getFood();
     }
+
+
 }
